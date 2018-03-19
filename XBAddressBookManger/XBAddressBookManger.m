@@ -39,7 +39,7 @@
 
 - (void)getAddressBookInfo
 {
-//    if (IOS9 == NO)
+    //    if (IOS9 == NO)
     {
         //这个变量用于记录授权是否成功，即用户是否允许我们访问通讯录
         int __block tip = 0;
@@ -85,10 +85,10 @@
             NSString * lastName=(__bridge NSString *)(ABRecordCopyValue(people, kABPersonLastNameProperty));
             
             //获取当前联系人的名字拼音
-//            NSString * firstNamePhoneic=(__bridge NSString*)(ABRecordCopyValue(people, kABPersonFirstNamePhoneticProperty));
+            //            NSString * firstNamePhoneic=(__bridge NSString*)(ABRecordCopyValue(people, kABPersonFirstNamePhoneticProperty));
             
             //获取当前联系人的备注
-//            NSString * notes = (__bridge NSString*)(ABRecordCopyValue(people, kABPersonNoteProperty));
+            //            NSString * notes = (__bridge NSString*)(ABRecordCopyValue(people, kABPersonNoteProperty));
             
             //获取当前联系人的电话 数组
             NSMutableArray * phoneArr = [[NSMutableArray alloc]init];
@@ -98,7 +98,7 @@
             }
             
             //获取当前联系人头像图片
-//            NSData * userImage=(__bridge NSData*)(ABPersonCopyImageData(people));
+            //            NSData * userImage=(__bridge NSData*)(ABPersonCopyImageData(people));
             
             
             NSString *userName = nil;
@@ -121,6 +121,8 @@
             {
                 userPhone = phoneArr[0];
                 userPhone = [userPhone stringByReplacingOccurrencesOfString:@" " withString:@""];
+                userPhone = [userPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                userPhone = [userPhone stringByReplacingOccurrencesOfString:@"+86" withString:@""];
             }
             
             if (userPhone.length && userName.length)
@@ -129,9 +131,10 @@
                 [self.arrM_contact addObject:contactInfoDic];
             }
             
-//            NSLog(@"firstName:%@,lastName:%@,firstNamePhoneic:%@,notes:%@,phoneArr:%@,userImage:%@",firstName,lastName,firstNamePhoneic,notes,phoneArr,userImage);
+            //            NSLog(@"firstName:%@,lastName:%@,firstNamePhoneic:%@,notes:%@,phoneArr:%@,userImage:%@",firstName,lastName,firstNamePhoneic,notes,phoneArr,userImage);
         }
     }
-
+    
 }
 @end
+
